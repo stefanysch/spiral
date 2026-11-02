@@ -1,0 +1,99 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* adventor: só no logo e nos títulos. arquivo local, sem cdn. */
+@font-face {
+  font-family: "Adventor";
+  src: url("../assets/fonts/tex-gyre-adventor-regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --spiral-bg: #FAF7FF;
+  --spiral-surface: #FFFFFF;
+  --spiral-surface-2: #F3ECFF;
+  --spiral-border: #E9DDFB;
+  --spiral-fg: #1A1128;
+  --spiral-muted: #5F5380;
+  --spiral-accent: #7C3AED;
+  --spiral-accent-fg: #FFFFFF;
+  --spiral-glow: #7C3AED;
+  --spiral-brand: #B026FF;      /* roxo da marca: só no logo e vinil */
+  --spiral-ink: #0B0814;        /* preto da marca */
+  --spiral-warn: #B45309;
+  --spiral-danger: #DC2626;
+  color-scheme: light;
+}
+
+.dark {
+  --spiral-bg: #0B0814;
+  --spiral-surface: #161024;
+  --spiral-surface-2: #1D1530;
+  --spiral-border: #2A2140;
+  --spiral-fg: #EDE9FE;
+  --spiral-muted: #A79BC9;
+  --spiral-accent: #A855F7;
+  --spiral-accent-fg: #0B0814;
+  --spiral-glow: #B026FF;
+  --spiral-warn: #FBBF24;
+  --spiral-danger: #F87171;
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-bg: var(--spiral-bg);
+  --color-surface: var(--spiral-surface);
+  --color-surface-2: var(--spiral-surface-2);
+  --color-border: var(--spiral-border);
+  --color-fg: var(--spiral-fg);
+  --color-muted: var(--spiral-muted);
+  --color-accent: var(--spiral-accent);
+  --color-accent-fg: var(--spiral-accent-fg);
+  --color-glow: var(--spiral-glow);
+  --color-brand: var(--spiral-brand);
+  --color-ink: var(--spiral-ink);
+  --color-warn: var(--spiral-warn);
+  --color-danger: var(--spiral-danger);
+
+  --font-sans: "DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --font-display: "Adventor", "DM Sans", system-ui, sans-serif;
+
+  --shadow-neon: 0 0 0 1px var(--spiral-glow), 0 0 22px -4px var(--spiral-glow);
+
+  --animate-orbit-spin: orbit-spin 1.15s linear infinite;
+  --animate-orbit-draw: orbit-draw 2.3s cubic-bezier(.65, 0, .35, 1) infinite;
+}
+
+@keyframes orbit-spin { to { transform: rotate(360deg); } }
+@keyframes orbit-draw {
+  0%   { stroke-dashoffset: 1; }
+  50%  { stroke-dashoffset: 0; }
+  100% { stroke-dashoffset: -1; }
+}
+
+@layer base {
+  body {
+    @apply bg-bg font-sans text-fg antialiased;
+  }
+  h1, h2, h3 {
+    @apply font-display tracking-tight;
+    text-wrap: balance;
+  }
+  :where(a, button, input, textarea, select, [tabindex]):focus-visible {
+    @apply shadow-neon outline-none;
+  }
+  ::selection {
+    @apply bg-accent text-accent-fg;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 3s !important;
+    transition-duration: 0s !important;
+  }
+}

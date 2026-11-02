@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>spiral</title>
+    <meta name="description" content="Ferramentas para teste e desenvolvimento. Tudo roda no seu navegador." />
+    <meta name="theme-color" content="#0B0814" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta property="og:title" content="spiral" />
+    <meta property="og:description" content="Ferramentas para teste e desenvolvimento. Tudo roda no seu navegador." />
+    <meta property="og:image" content="public/brand/spiral-mao-logo-claro.png" />
+    <script>
+      (function () {
+        try {
+          var saved = localStorage.getItem("spiral:tema");
+          var dark = saved ? saved === "escuro" : !matchMedia("(prefers-color-scheme: light)").matches;
+          document.documentElement.classList.toggle("dark", dark);
+        } catch (e) {
+          document.documentElement.classList.add("dark");
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
