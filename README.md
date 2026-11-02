@@ -10,6 +10,10 @@
   tudo roda no seu navegador. nada do que você digita sai da sua máquina.
 </p>
 
+<p align="center">
+  <a href="https://sspiral.vercel.app/"><b>acesse em sspiral.vercel.app →</b></a>
+</p>
+
 ## o que é
 
 o **spiral** é um site de ferramentas pequenas, rápidas e sem cadastro, do tipo que a gente precisa vinte vezes por semana no meio de um teste ou de um desenvolvimento: gerar um cpf válido, somar horas, jogar uma moeda, converter um valor.
