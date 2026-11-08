@@ -3,6 +3,8 @@ import caraOuCoroa from "./cara-ou-coroa";
 import geradorDeCpf from "./gerador-de-cpf";
 import geradorDeCnpj from "./gerador-de-cnpj";
 import calculadoraDeHoras from "./calculadora-de-horas";
+import geradorDeNumerosAleatorios from "./gerador-de-numeros-aleatorios";
+import maiusculasEMinusculas from "./maiusculas-e-minusculas";
 
 /**
  * lugar onde uma ferramenta é registrada.
@@ -14,6 +16,8 @@ export const TOOLS: readonly ToolDefinition[] = [
   geradorDeCpf,
   geradorDeCnpj,
   calculadoraDeHoras,
+  geradorDeNumerosAleatorios,
+  maiusculasEMinusculas,
 ];
 
 export function findTool(slug: string): ToolDefinition | undefined {
