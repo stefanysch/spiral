@@ -6,12 +6,11 @@ import {
   calculate, formatDecimalHours, formatOperationAuto, formatTime, needsSeconds,
   normalizeTime, parseTime, secondsInvolved, splitTrailingOperator, type Op, type Operation,
 } from "./logic";
-
-const OPS: Op[] = ["+", "-"];
-
+ 
 /**
  * calculadora de horas só com soma e subtração.
- * digite um horário (pode ser negativo, como -00:11), aperte + ou - e continue.
+ * digite um horário (o primeiro pode ser negativo, como -00:11), aperte + ou - e continue.
+ * depois do primeiro valor, + e - são sempre a operação: o último que você apertar é o que vale.
  * cada operação feita vira uma linha no histórico: "-00:11 + 00:15 = 00:04".
  */
 export default function CalculadoraDeHoras() {
@@ -23,13 +22,13 @@ export default function CalculadoraDeHoras() {
   const [input, setInput] = useState("");
   const [error, setError] = useState<string>();
   const inputRef = useRef<HTMLInputElement>(null);
-
+ 
   const withSeconds = needsSeconds([...secondsInvolved(ops), acc ?? 0]);
   // só um "-" ou "+" no campo é o sinal do próximo valor, ainda sem número
   const hasNumber = /\d/.test(input);
   // prévia de como os números soltos serão entendidos: "1530" → "15:30"
   const preview = /^[+-]?\d+$/.test(input) ? normalizeTime(input) : null;
-
+ 
   /** fecha o valor digitado: calcula (se já há conta em andamento) e guarda a próxima operação. */
   function commit(raw: string, nextOp: Op | null) {
     const value = normalizeTime(raw); // "1530" → "15:30"
@@ -50,30 +49,26 @@ export default function CalculadoraDeHoras() {
     }
     inputRef.current?.focus();
   }
-
-  /** apertou + ou - (tecla no fim do campo ou botão). */
-  function pressOp(op: Op) {
-    if (hasNumber) commit(input, op);
-    else if (acc !== null) {
-      setPending(op); // campo sem número: só troca a operação
-      setInput("");
-      inputRef.current?.focus();
-    }
-  }
-
+ 
   function handleChange(typed: string) {
     setError(undefined);
     const text = typed.replace(/[^\d:+\- ]/g, ""); // só números, ":", "+" e "-"
     const split = splitTrailingOperator(text);
     if (!split) return setInput(text);
     if (split.value.trim() === "") {
-      // sinal no começo do campo = valor negativo (ou positivo), não operação
+      // campo vazio e já existe total: o último operador digitado vale (+ depois de - vira +, e vice-versa).
+      // assim "- -" não vira menos com menos (que somaria) e "- +" não mantém o menos antigo.
+      if (acc !== null) {
+        setPending(split.op);
+        return setInput("");
+      }
+      // ainda sem total: o sinal é do primeiro valor ("-0011" começa negativo)
       return setInput(split.op);
     }
     if (/^[+-]$/.test(split.value.trim())) return; // "-+": ignora o segundo sinal
     commit(split.value, split.op);
   }
-
+ 
   function handleKeyDown(e: KeyboardEvent<HTMLInputElement>) {
     if (e.key === "Enter" || e.key === "=") {
       e.preventDefault();
@@ -81,7 +76,7 @@ export default function CalculadoraDeHoras() {
     }
     if (e.key === "Escape") clear();
   }
-
+ 
   function clear() {
     setOps([]);
     setAcc(null);
@@ -90,9 +85,9 @@ export default function CalculadoraDeHoras() {
     setError(undefined);
     inputRef.current?.focus();
   }
-
+ 
   const lines = ops.map(formatOperationAuto);
-
+ 
   return (
     <>
       <div className="flex flex-col gap-3 rounded-lg border border-border bg-surface p-4">
@@ -118,27 +113,15 @@ export default function CalculadoraDeHoras() {
           {preview && !error && <p className="text-right font-mono text-sm text-muted">= {preview}</p>}
           {error && <p role="alert" className="text-right text-sm text-danger">{error}</p>}
         </div>
-
-        {/* teclas (no teclado: + - enter esc). um - no campo vazio vira o sinal do valor */}
-        <div className="grid grid-cols-4 gap-1.5">
-          {OPS.map((op) => (
-            <button key={op} type="button" onClick={() => pressOp(op)} aria-label={op === "+" ? "somar" : "subtrair"}
-              className={cn("h-10.5 rounded-md border font-mono text-lg transition hover:border-accent",
-                pending === op ? "border-accent bg-accent text-accent-fg" : "border-border bg-surface-2 text-accent")}>
-              {op}
-            </button>
-          ))}
-          <button type="button" onClick={() => hasNumber && commit(input, null)} aria-label="igual"
-            className="h-10.5 rounded-md border border-accent bg-accent font-mono text-lg text-accent-fg transition hover:shadow-neon">
-            =
-          </button>
-          <button type="button" onClick={clear} aria-label="limpar tudo"
-            className="h-10.5 rounded-md border border-border bg-surface-2 text-sm text-muted transition hover:border-accent hover:text-fg">
-            esc
-          </button>
-        </div>
+ 
+        {/* sem botões: tudo pelo teclado (+ - enter esc). a linha abaixo diz o que digitar agora */}
+        <p className="text-center text-sm text-muted">
+          {acc === null
+            ? "digite um horário, como 0130 ou 01:30. use - antes do número para começar negativo."
+            : "digite + ou - e o próximo horário. enter calcula, esc limpa tudo."}
+        </p>
       </div>
-
+ 
       <section aria-label="histórico" className="flex flex-col gap-2">
         <div className="flex items-center justify-between gap-3">
           <h2 className="font-sans text-sm font-medium tracking-normal">histórico</h2>
@@ -148,8 +131,8 @@ export default function CalculadoraDeHoras() {
           <p className="rounded-md border border-dashed border-border px-3 py-4 text-sm text-muted">
             cada operação aparece aqui. ex.: digite <span className="font-mono text-fg">-0011</span>, aperte{" "}
             <span className="font-mono text-fg">+</span>, digite <span className="font-mono text-fg">0015</span> e aperte{" "}
-            <span className="font-mono text-fg">enter</span>. para um valor negativo, comece com{" "}
-            <span className="font-mono text-fg">-</span>.
+            <span className="font-mono text-fg">enter</span>. para começar com um valor negativo, digite{" "}
+            <span className="font-mono text-fg">-</span> antes do primeiro número.
           </p>
         ) : (
           <ol className="rounded-md border border-border bg-bg px-4 py-3 font-mono text-sm leading-7 tabular-nums">
@@ -157,7 +140,7 @@ export default function CalculadoraDeHoras() {
           </ol>
         )}
       </section>
-
+ 
       {acc !== null && (
         <section aria-label="total" className="flex flex-wrap items-center justify-between gap-3 rounded-lg border border-border bg-surface-2 px-4 py-3">
           <div className="flex items-baseline gap-3">
