@@ -5,6 +5,9 @@ import geradorDeCnpj from "./gerador-de-cnpj";
 import calculadoraDeHoras from "./calculadora-de-horas";
 import geradorDeNumerosAleatorios from "./gerador-de-numeros-aleatorios";
 import maiusculasEMinusculas from "./maiusculas-e-minusculas";
+import geradorDeSenhas from "./gerador-de-senhas";
+import contadorDeCaracteres from "./contador-de-caracteres";
+import morseEBinario from "./morse-e-binario";
 
 /**
  * lugar onde uma ferramenta é registrada.
@@ -18,6 +21,9 @@ export const TOOLS: readonly ToolDefinition[] = [
   calculadoraDeHoras,
   geradorDeNumerosAleatorios,
   maiusculasEMinusculas,
+  geradorDeSenhas,
+  contadorDeCaracteres,
+  morseEBinario
 ];
 
 export function findTool(slug: string): ToolDefinition | undefined {
