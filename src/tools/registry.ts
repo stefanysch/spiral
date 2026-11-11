@@ -8,7 +8,7 @@ import maiusculasEMinusculas from "./maiusculas-e-minusculas";
 import geradorDeSenhas from "./gerador-de-senhas";
 import contadorDeCaracteres from "./contador-de-caracteres";
 import morseEBinario from "./morse-e-binario";
-
+import seletorDeCores from "./seletor-de-cores";
 /**
  * lugar onde uma ferramenta é registrada.
  * para adicionar uma nova: crie a pasta em src/tools/<slug>/, importe aqui e coloque na lista.
@@ -23,7 +23,8 @@ export const TOOLS: readonly ToolDefinition[] = [
   maiusculasEMinusculas,
   geradorDeSenhas,
   contadorDeCaracteres,
-  morseEBinario
+  morseEBinario,
+  seletorDeCores,
 ];
 
 export function findTool(slug: string): ToolDefinition | undefined {
