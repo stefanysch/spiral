@@ -6,11 +6,10 @@ import type { IconName } from "@/components/ui/Icon";
  * em category: "documento" é pego antes de rodar.
  */
 export const CATEGORIES = [
-  { id: "tempo", label: "tempo", icon: "clock" },
+  { id: "texto", label: "texto", icon: "code" },
   { id: "documentos", label: "documentos", icon: "id" },
-  { id: "texto", label: "texto e códigos", icon: "code" },
-  { id: "cores", label: "cores", icon: "palette" },
-  { id: "sorte", label: "sorte", icon: "coin" },
+  { id: "calculo", label: "cálculo", icon: "calculator" },
+  { id: "utilitarios", label: "utilitários", icon: "sliders" },
 ] as const satisfies ReadonlyArray<{ id: string; label: string; icon: IconName }>;
 
 export type CategoryId = (typeof CATEGORIES)[number]["id"];

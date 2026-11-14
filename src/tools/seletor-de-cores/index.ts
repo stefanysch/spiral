@@ -5,7 +5,7 @@ export default defineTool({
   slug: "seletor-de-cores",
   name: "seletor de cores",
   description: "arraste no quadrado e na barra de matiz para achar a cor, guarde as favoritas e copie em HEX, RGB ou HSL.",
-  category: "cores",
+  category: "utilitarios",
   icon: "palette",
   keywords: ["cor", "color picker", "hex", "rgb", "hsl", "paleta", "conta-gotas", "contraste"],
   component: lazy(() => import("./SeletorDeCores")),
