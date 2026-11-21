@@ -9,5 +9,5 @@ export default defineTool({
   icon: "code",
   keywords: ["senha", "password", "segura", "forte", "aleatoria", "gerar senha", "caracteres especiais", "entropia"],
   component: lazy(() => import("./GeradorDeSenhas")),
-  isNew: true,
+  isNew: false,
 });

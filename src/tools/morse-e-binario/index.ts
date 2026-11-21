@@ -9,5 +9,5 @@ export default defineTool({
   icon: "binary",
   keywords: ["morse", "codigo morse", "binario", "binary", "bits", "utf-8", "converter", "traducao", "sos", "telegrafo"],
   component: lazy(() => import("./MorseEBinario")),
-  isNew: true,
+  isNew: false,
 });

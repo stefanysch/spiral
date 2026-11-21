@@ -9,5 +9,5 @@ export default defineTool({
   icon: "clock",
   keywords: ["horas", "horario", "tempo", "jornada", "banco de horas", "ponto", "somar horas", "hh:mm"],
   component: lazy(() => import("./CalculadoraDeHoras")),
-  isNew: true,
+  isNew: false,
 });

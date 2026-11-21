@@ -9,5 +9,5 @@ export default defineTool({
   icon: "code",
   keywords: ["maiuscula", "minuscula", "caixa alta", "caixa baixa", "uppercase", "lowercase", "converter texto", "letras"],
   component: lazy(() => import("./MaiusculasEMinusculas")),
-  isNew: true,
+  isNew: false,
 });

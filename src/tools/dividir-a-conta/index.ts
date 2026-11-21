@@ -9,5 +9,5 @@ export default defineTool({
   icon: "coin",
   keywords: ["dividir", "conta", "racha", "rachar", "racha conta", "restaurante", "gorjeta", "taxa de servico", "10%", "grana", "dinheiro"],
   component: lazy(() => import("./DividirAConta")),
-  isNew: true,
+  isNew: false,
 });

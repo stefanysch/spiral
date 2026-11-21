@@ -9,5 +9,5 @@ export default defineTool({
   icon: "id",
   keywords: ["cpf", "documento", "pessoa fisica", "receita", "teste", "fake"],
   component: lazy(() => import("./GeradorDeCpf")),
-  isNew: true,
+  isNew: false,
 });

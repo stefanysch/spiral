@@ -9,5 +9,5 @@ export default defineTool({
   icon: "id",
   keywords: ["cnpj", "empresa", "pessoa juridica", "receita", "alfanumerico", "letras", "teste", "fake"],
   component: lazy(() => import("./GeradorDeCnpj")),
-  isNew: true,
+  isNew: false,
 });

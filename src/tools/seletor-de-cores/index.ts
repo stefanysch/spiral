@@ -9,5 +9,5 @@ export default defineTool({
   icon: "palette",
   keywords: ["cor", "color picker", "hex", "rgb", "hsl", "paleta", "conta-gotas", "contraste"],
   component: lazy(() => import("./SeletorDeCores")),
-  isNew: true,
+  isNew: false,
 });

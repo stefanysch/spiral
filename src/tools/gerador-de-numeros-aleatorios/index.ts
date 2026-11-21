@@ -9,5 +9,5 @@ export default defineTool({
   icon: "binary",
   keywords: ["sorteio", "random", "aleatorio", "numero", "inteiros", "unicos", "sem repetir", "lista", "loteria", "dado"],
   component: lazy(() => import("./GeradorDeNumerosAleatorios")),
-  isNew: true,
+  isNew: false,
 });

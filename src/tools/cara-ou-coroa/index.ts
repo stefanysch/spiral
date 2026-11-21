@@ -9,5 +9,5 @@ export default defineTool({
   icon: "coin",
   keywords: ["moeda", "sorteio", "aleatorio", "decidir", "heads tails"],
   component: lazy(() => import("./CaraOuCoroa")),
-  isNew: true,
+  isNew: false,
 });

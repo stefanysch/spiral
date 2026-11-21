@@ -9,5 +9,5 @@ export default defineTool({
   icon: "code",
   keywords: ["contador", "caracteres", "palavras", "letras", "linhas", "paragrafos", "limite", "tamanho do texto", "contar"],
   component: lazy(() => import("./ContadorDeCaracteres")),
-  isNew: true,
+  isNew: false,
 });
