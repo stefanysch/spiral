@@ -10,6 +10,7 @@ import contadorDeCaracteres from "./contador-de-caracteres";
 import morseEBinario from "./morse-e-binario";
 import seletorDeCores from "./seletor-de-cores";
 import dividirAConta from "./dividir-a-conta";
+import diasEntreDatas from "./dias-entre-datas";
 /**
  * lugar onde uma ferramenta é registrada.
  * para adicionar uma nova: crie a pasta em src/tools/<slug>/, importe aqui e coloque na lista.
@@ -27,6 +28,7 @@ export const TOOLS: readonly ToolDefinition[] = [
   morseEBinario,
   seletorDeCores,
   dividirAConta,
+  diasEntreDatas,
 ];
 
 export function findTool(slug: string): ToolDefinition | undefined {
