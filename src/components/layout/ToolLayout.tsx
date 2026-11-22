@@ -19,7 +19,7 @@ export function ToolLayout({ title, description, icon, categoryLabel, children }
   useDocumentTitle(title);
   return (
     <div className="mx-auto flex max-w-3xl flex-col gap-8 px-4 py-8 sm:py-12">
-      <Link to="/" className="inline-flex w-fit items-center gap-1.5 rounded-md text-sm text-muted transition hover:text-fg">
+      <Link to="/" className="inline-flex w-fit items-center gap-1.5 rounded-md text-sm text-muted transition hover:text-accent">
         <Icon name="arrowLeft" size={16} /> todas as ferramentas
       </Link>
       <header className="flex items-start gap-4">

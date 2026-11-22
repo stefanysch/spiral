@@ -17,7 +17,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     document.documentElement.classList.toggle("dark", theme === "escuro");
-    document.querySelector('meta[name="theme-color"]')?.setAttribute("content", theme === "escuro" ? "#0B0814" : "#FAF7FF");
+    document.querySelector('meta[name="theme-color"]')?.setAttribute("content", theme === "escuro" ? "#06030C" : "#FAF7FF");
   }, [theme]);
 
   const setTheme = useCallback((next: Theme) => {

@@ -29,15 +29,15 @@
 }
 
 .dark {
-  --spiral-bg: #0B0814;
-  --spiral-surface: #161024;
-  --spiral-surface-2: #1D1530;
-  --spiral-border: #2A2140;
-  --spiral-fg: #EDE9FE;
-  --spiral-muted: #A79BC9;
-  --spiral-accent: #A855F7;
-  --spiral-accent-fg: #0B0814;
-  --spiral-glow: #B026FF;
+  --spiral-bg: #06030C;
+  --spiral-surface: #0F0919;
+  --spiral-surface-2: #170E27;
+  --spiral-border: #2B1650;
+  --spiral-fg: #F1EBFF;
+  --spiral-muted: #A394CC;
+  --spiral-accent: #6A1BB0;
+  --spiral-accent-fg: #FFFFFF;
+  --spiral-glow: #7A1CCC;
   --spiral-warn: #FBBF24;
   --spiral-danger: #F87171;
   color-scheme: dark;
@@ -86,9 +86,33 @@
   :where(a, button, input, textarea, select, [tabindex]):focus-visible {
     @apply shadow-neon outline-none;
   }
+  /* tudo que é clicável mostra a mãozinha (o tailwind 4 deixa botões com a seta) */
+  :where(a[href], button:not(:disabled), [role="button"], summary, select,
+    input:is([type="checkbox"], [type="radio"], [type="range"], [type="color"], [type="submit"])) {
+    cursor: pointer;
+  }
   ::selection {
     @apply bg-accent text-accent-fg;
   }
+}
+
+/* sombra roxa nos boxes ao passar o cursor (cartões da home e painéis das ferramentas) */
+.rounded-lg.border:is(.bg-surface, .bg-surface-2) {
+  transition: box-shadow 0.25s ease, border-color 0.25s ease;
+}
+.rounded-lg.border:is(.bg-surface, .bg-surface-2):hover {
+  border-color: var(--spiral-accent);
+  box-shadow:
+    0 6px 20px -6px color-mix(in srgb, var(--spiral-accent) 45%, transparent),
+    0 14px 36px -12px color-mix(in srgb, var(--spiral-accent) 30%, transparent);
+}
+/* no escuro: degradê de sombra, do roxo neon junto ao box até um lilás claro mais longe */
+.dark .rounded-lg.border:is(.bg-surface, .bg-surface-2):hover {
+  box-shadow:
+    0 0 0 1px var(--spiral-glow),
+    0 4px 14px -2px color-mix(in srgb, var(--spiral-glow) 80%, transparent),
+    0 12px 32px -6px color-mix(in srgb, #B66BFF 55%, transparent),
+    0 24px 60px -10px color-mix(in srgb, #EBDCFF 40%, transparent);
 }
 
 @media (prefers-reduced-motion: reduce) {

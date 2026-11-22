@@ -21,7 +21,7 @@ export function Segmented<T extends string>({ label, options, value, onChange }:
         {options.map((opt) => (
           <label key={opt.value} className={cn(
             "cursor-pointer rounded px-3 py-1.5 text-sm transition has-[:focus-visible]:shadow-neon",
-            opt.value === value ? "bg-accent text-accent-fg" : "text-muted hover:text-fg",
+            opt.value === value ? "bg-accent text-accent-fg hover:shadow-neon" : "text-muted hover:bg-surface hover:text-fg",
           )}>
             <input type="radio" className="sr-only" name={label} value={opt.value}
               checked={opt.value === value} onChange={() => onChange(opt.value)} />

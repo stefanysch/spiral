@@ -9,7 +9,7 @@ type CheckboxProps = Omit<InputHTMLAttributes<HTMLInputElement>, "type" | "child
 export function Checkbox({ label, className, ...rest }: CheckboxProps) {
   return (
     <label className={cn(
-      "flex w-fit cursor-pointer items-center gap-2 rounded text-sm has-[:focus-visible]:shadow-neon", className,
+      "flex w-fit cursor-pointer items-center gap-2 rounded text-sm transition hover:text-accent has-[:focus-visible]:shadow-neon", className,
     )}>
       <input type="checkbox" className="size-4 cursor-pointer accent-accent" {...rest} />
       <span>{label}</span>
