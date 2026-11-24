@@ -106,13 +106,13 @@
     0 6px 20px -6px color-mix(in srgb, var(--spiral-accent) 45%, transparent),
     0 14px 36px -12px color-mix(in srgb, var(--spiral-accent) 30%, transparent);
 }
-/* no escuro: degradê de sombra, do roxo neon junto ao box até um lilás claro mais longe */
+/* no escuro: degradê de sombra todo em roxo (mesma espessura de antes, sem o lilás claro que esbranquiçava) */
 .dark .rounded-lg.border:is(.bg-surface, .bg-surface-2):hover {
   box-shadow:
     0 0 0 1px var(--spiral-glow),
     0 4px 14px -2px color-mix(in srgb, var(--spiral-glow) 80%, transparent),
-    0 12px 32px -6px color-mix(in srgb, #B66BFF 55%, transparent),
-    0 24px 60px -10px color-mix(in srgb, #EBDCFF 40%, transparent);
+    0 12px 32px -6px color-mix(in srgb, var(--spiral-glow) 55%, transparent),
+    0 24px 60px -10px color-mix(in srgb, var(--spiral-glow) 40%, transparent);
 }
 
 @media (prefers-reduced-motion: reduce) {

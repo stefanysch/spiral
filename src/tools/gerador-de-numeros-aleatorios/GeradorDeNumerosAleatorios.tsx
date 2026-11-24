@@ -38,8 +38,8 @@ export default function GeradorDeNumerosAleatorios() {
   return (
     <>
       <div className="flex flex-col gap-4 rounded-lg border border-border bg-surface p-4">
-        <div className="grid gap-4 sm:grid-cols-3">
-          <TextField label={`quantidade de números (até ${MAX_QUANTITY})`} type="number" inputMode="numeric" mono
+        <div className="grid items-start gap-4 sm:grid-cols-3">
+          <TextField label="quantidade" hint={`até ${MAX_QUANTITY} números`} type="number" inputMode="numeric" mono
             value={quantity} onChange={(e) => setQuantity(e.target.value)} onKeyDown={onEnter} />
           <TextField label="inteiros entre (mínimo)" type="number" inputMode="numeric" mono
             value={min} onChange={(e) => setMin(e.target.value)} onKeyDown={onEnter} />
