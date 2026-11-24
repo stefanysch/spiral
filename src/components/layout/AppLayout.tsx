@@ -3,6 +3,7 @@ import { Outlet, ScrollRestoration, useLocation } from "react-router";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
 import { Sidebar } from "./Sidebar";
+import { InstallBanner } from "./InstallBanner";
 
 /** esqueleto de todas as páginas: cabeçalho, menu lateral de ferramentas, conteúdo da rota atual (<Outlet />) e rodapé. */
 export function AppLayout() {
@@ -27,6 +28,7 @@ export function AppLayout() {
           <Footer />
         </div>
       </div>
+      <InstallBanner />
       <ScrollRestoration />
     </div>
   );
